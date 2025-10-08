@@ -1,13 +1,13 @@
+import os
 import math
 import random
-import traceback
-
 import discord
 import unicodedata
 from typing import Optional
 from discord import app_commands
 from discord.ext import commands
-from discord.app_commands import Range, Choice
+from keep_alive import keep_alive
+# from discord.app_commands import Range, Choice
 
 WIDE_MAP = {i: i + 0xFEE0 for i in range(0x21, 0x7F)}
 WIDE_MAP[0x20] = 0x3000
@@ -241,4 +241,15 @@ async def on_error(interaction: discord.Interaction, error: Exception):
     await interaction.response.send_message(f'死了啦都你害的啦拜托\n\n> 死因：{error}')
 
 
-bot.run('TOKEN')
+try:
+  token = os.getenv("TOKEN") or ""
+  if token == "":
+    raise Exception("Please add your token to the Secrets pane.")
+  keep_alive()
+  bot.run(token)
+except discord.HTTPException as e:
+    if e.status == 429:
+        print('The Discord servers denied the connection for making too many requests')
+        print('Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests')
+    else:
+        raise e
