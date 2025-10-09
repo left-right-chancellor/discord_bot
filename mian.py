@@ -32,6 +32,15 @@ def is_made_up_of(m, s):
         return True
     return False
 
+def contains(m, s):
+    m = m.upper()
+    for c in s.upper():
+        if m.find(c) == -1:
+            return False
+        else:
+            m = m[m.find(c):]
+    return True
+
 intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix='$', intents=intents)
@@ -214,17 +223,15 @@ async def on_message(m):
         await discord.utils.get(m.guild.channels, name='宋').send(f'宋啦')
     if ('南一中' in m.content or '國立臺南第一高級中學' in m.content or '臺南第一高中' in m.content or '南部分校' in m.content or '國立臺南第一高級中等學校' in m.content or 'tnfsh' in m.content) and not m.author.bot:
         await m.reply(f'南一中是我們神聖不可分割的一部分，我們堅持統一一中之大業。')
-    if 'CIALLO' in m.content.upper() and not m.author.bot:
+    if contains(m.content, 'CIALLO') and not m.author.bot:
         await m.reply(f'{m.author.mention}柚子廚蒸鵞心')
     if m.content.upper() == 'SYBAU' and not m.author.bot:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/sybau.jpeg')
     elif is_made_up_of(m.content, 'SYBAU') and not m.author.bot:
-        print('sybau')
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/subway.jpeg')
     elif m.content.upper() == 'SUBWAY' and not m.author.bot:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/subway_mark.png')
     elif is_made_up_of(m.content, 'SUBWAY') and not m.author.bot:
-        print('subway')
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/subway.jpeg')
 
 @bot.event
