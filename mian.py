@@ -13,7 +13,7 @@ WIDE_MAP = {i: i + 0xFEE0 for i in range(0x21, 0x7F)}
 WIDE_MAP[0x20] = 0x3000
 
 def is_made_up_of(m, s):
-    if not m:
+    if not m or len(m) != len(s):
         return False
     i = 0
     m = m.upper()
