@@ -179,7 +179,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
         max_width = math.inf
     if message_to_quote == ' ' * 15:
         message_to_quote = 'empty'
-    await interaction.response.send_message(f'received with message {message_to_quote} and a parameter of max width {max_width}.')
+    await interaction.response.send_message(f'received with message "{message_to_quote}" and a parameter of max width {max_width}.')
 
 
 @bot.tree.command(name='to_full',description='將訊息中的半形符號變為全形送出。')
