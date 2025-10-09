@@ -5,7 +5,7 @@ app = Flask('')
 
 @app.route('/')
 def main():
-    return 'Operating. '
+    return '<!DOCTYPE html><html><head><meta charset="utf-8" /><title>男娘機機</title><style>body{background:#202020;color:#fff;}</style></head><body>Operating. </body></html>'
 
 def run():
     app.run(host="0.0.0.0", port=8080)
