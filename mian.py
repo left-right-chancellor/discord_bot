@@ -38,7 +38,7 @@ def contains(m, s):
         if m.find(c) == -1:
             return False
         else:
-            m = m[m.find(c):]
+            m = m[m.find(c) + 1:]
     return True
 
 intents = discord.Intents.all()
