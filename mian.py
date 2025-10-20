@@ -4,7 +4,7 @@ import random
 import discord
 import unicodedata
 from typing import Optional
-from discord import app_commands
+from discord import app_commands, Member
 from discord.ext import commands
 from keep_alive import keep_alive
 # from discord.app_commands import Range, Choice
@@ -195,7 +195,13 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
 async def to_full(interaction, message:str):
     await interaction.response.send_message(message.translate(WIDE_MAP))
 
-
+@bot.tree.command(name='disguise',description='')
+async def disguise(interaction, m:discord.Member, message:discord.Message):
+    webhook = await interaction.channel.create_webhook(name=m.name)
+    await webhook.send(message.content, username=m.name, avatar_url=m.display_avatar.url)
+    webhooks = await interaction.channel.webhooks()
+    for webhook in webhooks:
+        await webhook.delete()
 
 @bot.event
 async def setup_hook():
@@ -213,25 +219,25 @@ async def on_member_join(m):
 @bot.event
 async def on_message(m):
     await bot.process_commands(m)
-    if '男娘' in m.content and not m.author.bot:
+    if '男娘' in m.content and m.author.id != 1422957657836486797:
         await m.reply('我才不是男娘')
-    if bot.user.mentioned_in(m) and not m.author.bot:
+    if bot.user.mentioned_in(m) and m.author.id != 1422957657836486797:
         await m.channel.send(f'{m.author.mention}你才男娘')
-    if '左右丞' in m.content and not m.author.bot:
+    if '左右丞' in m.content and m.author.id != 1422957657836486797:
         await m.reply(f'{discord.utils.get(m.guild.members, name='tablegame___').mention}是男娘')
-    if '宋啦' in m.content and not m.author.bot:
+    if '宋啦' in m.content and m.author.id != 1422957657836486797:
         await discord.utils.get(m.guild.channels, name='宋').send(f'宋啦')
-    if ('南一中' in m.content or '國立臺南第一高級中學' in m.content or '臺南第一高中' in m.content or '南部分校' in m.content or '國立臺南第一高級中等學校' in m.content or 'tnfsh' in m.content) and not m.author.bot:
+    if ('南一中' in m.content or '國立臺南第一高級中學' in m.content or '臺南第一高中' in m.content or '南部分校' in m.content or '國立臺南第一高級中等學校' in m.content or 'tnfsh' in m.content) and m.author.id != 1422957657836486797:
         await m.reply(f'南一中是我們神聖不可分割的一部分，我們堅持統一一中之大業。')
     if contains(m.content, 'CIALLO') and m.author.id != 1422957657836486797:
         await m.reply(f'{m.author.mention}柚子廚蒸鵞心')
-    if m.content.upper() == 'SYBAU' and not m.author.bot:
+    if m.content.upper() == 'SYBAU' and m.author.id != 1422957657836486797:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/sybau.jpeg')
-    elif is_made_up_of(m.content, 'SYBAU') and not m.author.bot:
+    elif is_made_up_of(m.content, 'SYBAU') and m.author.id != 1422957657836486797:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/subway.jpeg')
-    elif m.content.upper() == 'SUBWAY' and not m.author.bot:
+    elif m.content.upper() == 'SUBWAY' and m.author.id != 1422957657836486797:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/subway_mark.png')
-    elif is_made_up_of(m.content, 'SUBWAY') and not m.author.bot:
+    elif is_made_up_of(m.content, 'SUBWAY') and m.author.id != 1422957657836486797:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/subway.jpeg')
 
 @bot.event
