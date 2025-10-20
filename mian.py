@@ -195,7 +195,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
 async def to_full(interaction, message:str):
     await interaction.response.send_message(message.translate(WIDE_MAP))
 
-@bot.tree.command(name='disguise',description='')
+@bot.tree.command(name='disguise',description='disguise as mentioned')
 async def disguise(interaction, m:discord.Member, message:discord.Message):
     webhook = await interaction.channel.create_webhook(name=m.name)
     await webhook.send(message.content, username=m.name, avatar_url=m.display_avatar.url)
