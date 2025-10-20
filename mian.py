@@ -223,7 +223,7 @@ async def on_message(m):
         await discord.utils.get(m.guild.channels, name='宋').send(f'宋啦')
     if ('南一中' in m.content or '國立臺南第一高級中學' in m.content or '臺南第一高中' in m.content or '南部分校' in m.content or '國立臺南第一高級中等學校' in m.content or 'tnfsh' in m.content) and not m.author.bot:
         await m.reply(f'南一中是我們神聖不可分割的一部分，我們堅持統一一中之大業。')
-    if contains(m.content, 'CIALLO') and not m.author.id == 1422957657836486797:
+    if contains(m.content, 'CIALLO') and m.author.id != 1422957657836486797:
         await m.reply(f'{m.author.mention}柚子廚蒸鵞心')
     if m.content.upper() == 'SYBAU' and not m.author.bot:
         await m.channel.send('https://minnnnnnnnnnnnnnnnnnnnn.github.io/i/sybau.jpeg')
