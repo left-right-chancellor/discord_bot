@@ -1,6 +1,8 @@
 import os
 import math
 import random
+import string
+
 import discord
 import unicodedata
 from typing import Optional
@@ -196,9 +198,11 @@ async def to_full(interaction, message:str):
     await interaction.response.send_message(message.translate(WIDE_MAP))
 
 @bot.tree.command(name='disguise',description='disguise as mentioned')
+@app_commands.describe(m='要仿冒之人',msg='要傳送之訊息，可以「<br>」換行')
 async def disguise(interaction, m:discord.Member, msg:str):
+    br = str.maketrans('<br>', '\n')
     webhook = await interaction.channel.create_webhook(name=m.name)
-    await webhook.send(msg, username=m.display_name, avatar_url=m.display_avatar.url)
+    await webhook.send(msg.translate(br), username=m.display_name, avatar_url=m.display_avatar.url)
     webhooks = await interaction.channel.webhooks()
     for webhook in webhooks:
         await webhook.delete()
