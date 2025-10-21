@@ -195,7 +195,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
 
 @bot.tree.command(name='to_full',description='將訊息中的半形符號變為全形送出。')
 async def to_full(interaction, message:str):
-    await interaction.response.send_message(message.translate(WIDE_MAP))
+    await interaction.response.send_message(message.translate(WIDE_MAP).replace('<br>', '\n'))
 
 @bot.tree.command(name='disguise',description='disguise as mentioned')
 @app_commands.describe(m='要仿冒之人',msg='要傳送之訊息，可以「<br>」換行')
