@@ -1,12 +1,10 @@
 import os
 import math
 import random
-import string
-
 import discord
 import unicodedata
 from typing import Optional
-from discord import app_commands, Member
+from discord import app_commands
 from discord.ext import commands
 from keep_alive import keep_alive
 # from discord.app_commands import Range, Choice
