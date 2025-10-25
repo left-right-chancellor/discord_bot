@@ -1,5 +1,4 @@
 import os
-import math
 import random
 import discord
 import unicodedata
@@ -146,7 +145,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
                 spaces += '-'
         if len(message_to_quote) <= 10:
             tabs = '\t'
-        await interaction.channel.send(f'''``` {spaces}
+        await interaction.response.send(f'''``` {spaces}
 <{message_to_quote}>
  {spaces}
 {tabs}\\
@@ -183,12 +182,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
 {tabs}\\) /  o o  \\ (/
 {tabs}  '_   -   _'
 {tabs}  / '-----' \\```'''
-        await interaction.channel.send(m)
-    if max_width <= 0:
-        max_width = math.inf
-    if message_to_quote == ' ' * 15:
-        message_to_quote = 'empty'
-    await interaction.response.send_message(f'received with message "{message_to_quote}" and a parameter of max width {max_width}.')
+        await interaction.response.send(m)
 
 
 @bot.tree.command(name='to_full',description='將訊息中的半形符號變為全形送出。')
