@@ -145,7 +145,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
                 spaces += '-'
         if len(message_to_quote) <= 10:
             tabs = '\t'
-        await interaction.response.send(f'''``` {spaces}
+        await interaction.response.send_message(f'''``` {spaces}
 <{message_to_quote}>
  {spaces}
 {tabs}\\
@@ -182,7 +182,7 @@ async def quote(interaction, message_to_quote:Optional[str]= ' ' * 15, max_width
 {tabs}\\) /  o o  \\ (/
 {tabs}  '_   -   _'
 {tabs}  / '-----' \\```'''
-        await interaction.response.send(m)
+        await interaction.response.send_message(m)
 
 
 @bot.tree.command(name='to_full',description='將訊息中的半形符號變為全形送出。')
